@@ -10,9 +10,6 @@ def load_data():
 
 df = load_data()
 
-# Debugging: Print column names to verify
-st.write("Columns in the dataset:", df.columns.tolist())
-
 # Streamlit app
 st.title("University Admissions and Student Satisfaction Dashboard")
 
@@ -73,6 +70,11 @@ ax[1].legend()
 
 st.pyplot(fig)
 
+
+
+
+
+
 # Insights and Summary
 st.subheader("Key Insights")
 insights = """
@@ -83,6 +85,7 @@ insights = """
 """
 st.markdown(insights)
 
+
 # Additional Insights
 st.subheader("Additional Insights")
 additional_insights = """
@@ -91,3 +94,4 @@ additional_insights = """
 - **Satisfaction Scores**: Student satisfaction scores have gradually increased, reflecting positive changes in the academic environment.
 """
 st.markdown(additional_insights)
+
