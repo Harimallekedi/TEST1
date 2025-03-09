@@ -72,6 +72,38 @@ st.pyplot(fig)
 
 
 
+
+# Compare trends between departments, retention rates, and satisfaction levels
+st.subheader("Compare Trends Between Departments, Retention Rates, and Satisfaction Levels")
+
+# Department-wise Retention and Satisfaction
+st.write("### Department-wise Retention and Satisfaction")
+fig, ax = plt.subplots(1, 2, figsize=(14, 5))
+
+# Retention Rate by Department
+retention_columns = ['Engineering Retention Rate (%)', 'Business Retention Rate (%)', 'Arts Retention Rate (%)', 'Science Retention Rate (%)']
+retention_data = df_filtered[retention_columns].mean()
+ax[0].bar(retention_columns, retention_data)
+ax[0].set_ylabel("Retention Rate (%)")
+ax[0].set_title("Department-wise Retention Rates")
+ax[0].tick_params(axis='x', rotation=45)
+
+# Satisfaction by Department
+satisfaction_columns = ['Engineering Satisfaction (%)', 'Business Satisfaction (%)', 'Arts Satisfaction (%)', 'Science Satisfaction (%)']
+satisfaction_data = df_filtered[satisfaction_columns].mean()
+ax[1].bar(satisfaction_columns, satisfaction_data)
+ax[1].set_ylabel("Satisfaction (%)")
+ax[1].set_title("Department-wise Satisfaction Scores")
+ax[1].tick_params(axis='x', rotation=45)
+
+st.pyplot(fig)
+
+
+
+
+
+
+
 # Insights and Summary
 st.subheader("Key Insights")
 insights = """
