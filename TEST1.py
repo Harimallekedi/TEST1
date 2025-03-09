@@ -59,3 +59,13 @@ insights = """
 - **Spring vs. Fall**: Comparing across terms reveals key differences in admission rates and student preferences.
 """
 st.markdown(insights)
+
+
+# Additional Insights
+st.subheader("Additional Insights")
+additional_insights = """
+- **Yearly Trends**: Over the years, there is a consistent increase in applications and enrollments, indicating growing interest in the university.
+- **Retention Rate**: The retention rate has shown a slight upward trend, suggesting improved student support and satisfaction.
+- **Satisfaction Scores**: Student satisfaction scores have gradually increased, reflecting positive changes in the academic environment.
+"""
+st.markdown(additional_insights)
