@@ -9,7 +9,8 @@ def load_data():
     return df
 
 df = load_data()
-
+#Print column names to verify
+st.write("Columns in the dataset:", df.columns.tolist())
 # Streamlit app
 st.title("University Admissions and Student Satisfaction Dashboard")
 
@@ -18,7 +19,8 @@ years = df['Year'].unique()
 selected_year = st.selectbox("Select Year", years)
 
 df_filtered = df[df['Year'] == selected_year]
-
+# Debugging: Print filtered DataFrame columns
+st.write("Columns in filtered dataset:", df_filtered.columns.tolist())
 # Applications, Admissions, and Enrollments over time
 st.subheader("Applications, Admissions, and Enrollments")
 fig, ax = plt.subplots()
@@ -82,27 +84,31 @@ fig, ax = plt.subplots(1, 2, figsize=(14, 5))
 
 # Retention Rate by Department
 retention_columns = ['Engineering Retention Rate (%)', 'Business Retention Rate (%)', 'Arts Retention Rate (%)', 'Science Retention Rate (%)']
-retention_data = df_filtered[retention_columns].mean()
-ax[0].bar(retention_columns, retention_data)
-ax[0].set_ylabel("Retention Rate (%)")
-ax[0].set_title("Department-wise Retention Rates")
-ax[0].tick_params(axis='x', rotation=45)
+# Debugging: Check if retention columns exist in the DataFrame
+missing_retention_columns = [col for col in retention_columns if col not in df_filtered.columns]
+if missing_retention_columns:
+    st.error(f"The following retention columns are missing: {missing_retention_columns}")
+else:
+    retention_data = df_filtered[retention_columns].mean()
+    ax[0].bar(retention_columns, retention_data)
+    ax[0].set_ylabel("Retention Rate (%)")
+    ax[0].set_title("Department-wise Retention Rates")
+    ax[0].tick_params(axis='x', rotation=45)
 
 # Satisfaction by Department
 satisfaction_columns = ['Engineering Satisfaction (%)', 'Business Satisfaction (%)', 'Arts Satisfaction (%)', 'Science Satisfaction (%)']
-satisfaction_data = df_filtered[satisfaction_columns].mean()
-ax[1].bar(satisfaction_columns, satisfaction_data)
-ax[1].set_ylabel("Satisfaction (%)")
-ax[1].set_title("Department-wise Satisfaction Scores")
-ax[1].tick_params(axis='x', rotation=45)
+# Debugging: Check if satisfaction columns exist in the DataFrame
+missing_satisfaction_columns = [col for col in satisfaction_columns if col not in df_filtered.columns]
+if missing_satisfaction_columns:
+    st.error(f"The following satisfaction columns are missing: {missing_satisfaction_columns}")
+else:
+    satisfaction_data = df_filtered[satisfaction_columns].mean()
+    ax[1].bar(satisfaction_columns, satisfaction_data)
+    ax[1].set_ylabel("Satisfaction (%)")
+    ax[1].set_title("Department-wise Satisfaction Scores")
+    ax[1].tick_params(axis='x', rotation=45)
 
 st.pyplot(fig)
-
-
-
-
-
-
 
 # Insights and Summary
 st.subheader("Key Insights")
