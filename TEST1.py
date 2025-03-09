@@ -40,6 +40,16 @@ ax.set_title("Retention and Satisfaction Trends")
 ax.legend()
 st.pyplot(fig)
 
+# Enrollment Breakdown by Department
+st.subheader("Enrollment Breakdown by Department")
+departments = ['Engineering Enrolled', 'Business Enrolled', 'Arts Enrolled', 'Science Enrolled']
+department_counts = df_filtered[departments].sum()
+fig, ax = plt.subplots()
+ax.bar(departments, department_counts)
+ax.set_ylabel("Number of Students")
+ax.set_title("Department-wise Enrollment")
+st.pyplot(fig)
+
 # Comparison between Spring and Fall terms
 st.subheader("Spring vs. Fall Term Comparison")
 spring_data = df[df['Term'] == 'Spring']
@@ -60,15 +70,7 @@ ax[1].legend()
 
 st.pyplot(fig)
 
-# Enrollment Breakdown by Department
-st.subheader("Enrollment Breakdown by Department")
-departments = ['Engineering Enrolled', 'Business Enrolled', 'Arts Enrolled', 'Science Enrolled']
-department_counts = df_filtered[departments].sum()
-fig, ax = plt.subplots()
-ax.bar(departments, department_counts)
-ax.set_ylabel("Number of Students")
-ax.set_title("Department-wise Enrollment")
-st.pyplot(fig)
+
 
 # Insights and Summary
 st.subheader("Key Insights")
